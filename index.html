@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biar Ama Hitung! - Kalkulator Gizi</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="assets/icons/logo.png" alt="Logo" class="nav-logo">
+      <div class="app-name">Biar Ama Hitung!</div>
+    </div>
+    <ul class="nav-center">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="#about" class="scroll-link">About</a></li>
+      <li><a href="mailto:support@biaramahitung.com?subject=Contact%20Biar%20Ama%20Hitung">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Metode Perhitungan Gizi <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="metode/harris-benedict.html">Harris-Benedict</a>
+          <a href="metode/dri-akg.html">DRI / AKG</a>
+          <a href="metode/rda.html">RDA</a>
+          <a href="metode/food-exchange.html">Food Exchange</a>
+          <a href="metode/tabel-komposisi.html">Tabel Komposisi Pangan</a>
+          <a href="metode/bmi-tdee.html">BMI + TDEE</a>
+          <a href="metode/estimasi-makronutrien.html">Estimasi Makronutrien</a>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="assets/icons/logo.png" alt="Logo" class="hero-logo">
+      <h1>Biar Ama Hitung!</h1>
+      <p>Kalkulator gizi interaktif untuk membantu Anda merencanakan asupan nutrisi dengan mudah dan akurat.</p>
+      <a href="#methods" class="hero-btn scroll-link">Jelajahi Metode</a>
+    </div>
+    <div class="particle-container">
+      <i class="fas fa-utensils particle particle-1"></i>
+      <i class="fas fa-apple-alt particle particle-2"></i>
+      <i class="fas fa-wheat-awn particle particle-3"></i>
+      <i class="fas fa-cheese particle particle-4"></i>
+      <i class="fas fa-utensils particle particle-5"></i>
+      <i class="fas fa-apple-alt particle particle-6"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="content about-section" id="about">
+    <h2>Tentang Kami</h2>
+    <div class="about-photo"></div>
+    <p class="justified">
+      <strong>Biar Ama Hitung!</strong> adalah aplikasi web yang dirancang untuk membantu Anda menghitung kebutuhan gizi dengan metode perhitungan yang terpercaya, seperti Harris-Benedict, DRI/AKG, RDA, Food Exchange, Tabel Komposisi Pangan, BMI + TDEE, dan Estimasi Makronutrien. Kami menyediakan alat yang mudah digunakan dengan antarmuka modern untuk mendukung gaya hidup sehat Anda. Aplikasi ini dikembangkan oleh Haikal Fatwa Rachmansyah dan Fadilla Ramadhani Reysi, dengan referensi dari sumber terpercaya seperti WHO/FAO, Kemenkes RI (AKG 2019), dan USDA Nutrient Database.
+    </p>
+  </section>
+
+  <!-- Methods Section -->
+  <section class="content methods-section" id="methods">
+    <h2>Metode Perhitungan Gizi</h2>
+    <div class="methods-grid">
+      <div class="method-card">
+        <h3>Harris-Benedict</h3>
+        <p>Hitung kebutuhan kalori basal berdasarkan usia, jenis kelamin, berat, dan tinggi badan.</p>
+        <a href="metode/harris-benedict.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>DRI / AKG</h3>
+        <p>Tentukan asupan gizi harian berdasarkan Angka Kecukupan Gizi Kemenkes RI.</p>
+        <a href="metode/dri-akg.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>RDA</h3>
+        <p>Gunakan Recommended Dietary Allowance untuk kebutuhan nutrisi harian.</p>
+        <a href="metode/rda.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>Food Exchange</h3>
+        <p>Rencanakan diet dengan sistem penukaran pangan untuk kontrol porsi.</p>
+        <a href="metode/food-exchange.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>Tabel Komposisi Pangan</h3>
+        <p>Analisis kandungan gizi makanan berdasarkan database komposisi pangan.</p>
+        <a href="metode/tabel-komposisi.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>BMI + TDEE</h3>
+        <p>Hitung Body Mass Index dan Total Daily Energy Expenditure untuk perencanaan diet.</p>
+        <a href="metode/bmi-tdee.html" class="method-btn">Coba Sekarang</a>
+      </div>
+      <div class="method-card">
+        <h3>Estimasi Makronutrien</h3>
+        <p>Distribusi makronutrien (karbohidrat, protein, lemak) berdasarkan kebutuhan energi.</p>
+        <a href="metode/estimasi-makronutrien.html" class="method-btn">Coba Sekarang</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Biar Ama Hitung! Dibuat oleh Haikal Fatwa Rachmansyah & Fadilla Ramadhani Reysi.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="references">
+        <p><strong>Sumber Referensi:</strong> AKG Kemenkes RI (2019), WHO/FAO, USDA Nutrient Database, Harris & Benedict (1919), TKPI Kemenkes RI, American Diabetes Association.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

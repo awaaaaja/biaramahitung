@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimasi Makronutrien - Biar Ama Hitung!</title>
+  <link rel="stylesheet" href="../css/estimasi-makronutrien.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../assets/icons/logo.png" alt="Logo" class="nav-logo">
+      <div class="app-name">Biar Ama Hitung!</div>
+    </div>
+    <ul class="nav-center">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="#about" class="scroll-link">About</a></li>
+      <li><a href="mailto:support@biaramahitung.com?subject=Contact%20Biar%20Ama%20Hitung">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Metode Perhitungan Gizi <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="harris-benedict.html">Harris-Benedict</a>
+          <a href="dri-akg.html">DRI / AKG</a>
+          <a href="rda.html">RDA</a>
+          <a href="food-exchange.html">Food Exchange</a>
+          <a href="tabel-komposisi.html">Tabel Komposisi Pangan</a>
+          <a href="bmi-tdee.html">BMI + TDEE</a>
+          <a href="estimasi-makronutrien.html" class="active">Estimasi Makronutrien</a>
+        </div>
+      </div>
+    </div>
+    <div class="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="../assets/images/macronutrient_2117263.png" alt="Macronutrient Logo" class="hero-logo">
+      <h1>Estimasi Makronutrien</h1>
+      <p>Hitung kebutuhan kalori, analisis gizi makanan, atau masukkan makronutrien langsung dengan kalkulator modern kami.</p>
+      <a href="#calculator" class="hero-btn scroll-link">Coba Sekarang</a>
+    </div>
+    <div class="particle-container">
+      <i class="fas fa-utensils particle particle-1"></i>
+      <i class="fas fa-apple-alt particle particle-2"></i>
+      <i class="fas fa-wheat-awn particle particle-3"></i>
+      <i class="fas fa-cheese particle particle-4"></i>
+      <i class="fas fa-utensils particle particle-5"></i>
+      <i class="fas fa-apple-alt particle particle-6"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="content about-section" id="about">
+    <h2>Tentang Estimasi Makronutrien</h2>
+    <div class="about-container">
+      <div class="about-content">
+        <img src="../assets/images/healthy-nutrition-svgrepo-com.svg" alt="Healthy Nutrition" class="about-photo">
+        <p class="justified">
+          <strong>Estimasi Makronutrien</strong> adalah metode untuk menghitung distribusi makronutrien (karbohidrat, protein, dan lemak) berdasarkan kebutuhan energi harian, komposisi makanan, atau input langsung. Kalkulator ini mendukung tiga mode: <strong>Personalized</strong> untuk kebutuhan kalori (TDEE) dan makronutrien berdasarkan data pribadi, <strong>Food-Based</strong> untuk analisis gizi makanan (termasuk makanan Indonesia dan kustom), serta <strong>Direct Macronutrient</strong> untuk menghitung kalori dan persentase dari input makronutrien. Fitur termasuk grafik visualisasi, tips diet berbasis bukti, riwayat perhitungan, ekspor PDF/CSV/TXT, dan konverter unit. Data gizi menggunakan referensi USDA, TKPI Kemenkes RI, dan ASEAN Food Composition Database untuk akurasi.
+        </p>
+      </div>
+      <div class="references-sidebar">
+        <h3>Referensi</h3>
+        <ul>
+          <li>AKG Kemenkes RI (2019): Pedoman Angka Kecukupan Gizi.</li>
+          <li>WHO/FAO (2004): Human Energy Requirements.</li>
+          <li>USDA Nutrient Database: Data kandungan gizi makanan.</li>
+          <li>Harris & Benedict (1919): A Biometric Study of Basal Metabolism.</li>
+          <li>TKPI Kemenkes RI: Tabel Komposisi Pangan Indonesia.</li>
+          <li>American Diabetes Association: Nutrition Recommendations.</li>
+        </ul>
+        <div class="logo-carousel">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_of_the_Ministry_of_Health_of_the_Republic_of_Indonesia.svg" alt="Kemenkes RI Logo" class="reference-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Logo_of_the_United_States_Department_of_Agriculture.svg" alt="USDA Logo" class="reference-logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="content calculator-section" id="calculator">
+    <h2>Kalkulator Makronutrien</h2>
+    <div class="calculator-container">
+      <div class="mode-tabs">
+        <button class="tab-btn active" data-mode="personalized">Personalized</button>
+        <button class="tab-btn" data-mode="food-based">Food-Based</button>
+        <button class="tab-btn" data-mode="direct-macro">Direct Macronutrient</button>
+      </div>
+      <!-- Personalized Mode -->
+      <div class="calculator-form" id="personalized-form" style="display: block;">
+        <form id="macro-form-personalized">
+          <div class="form-group">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Usia (tahun):</label>
+            <input type="number" id="age" name="age" placeholder="Masukkan usia" required min="1">
+          </div>
+          <div class="form-group">
+            <label>Jenis Kelamin:</label>
+            <div class="mode-toggle">
+              <input type="radio" id="male" name="gender" value="male" checked>
+              <label for="male">Pria</label>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Wanita</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="height">Tinggi Badan:</label>
+            <div class="unit-group">
+              <input type="number" id="height" name="height" placeholder="Masukkan tinggi" required min="0" step="0.1">
+              <select id="height-unit">
+                <option value="cm">cm</option>
+                <option value="in">inchi</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="weight">Berat Badan:</label>
+            <div class="unit-group">
+              <input type="number" id="weight" name="weight" placeholder="Masukkan berat" required min="0" step="0.1">
+              <select id="weight-unit">
+                <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="activity">Level Aktivitas Fisik:</label>
+            <select id="activity" name="activity" required>
+              <option value="sedentary">Sedentari (minim aktivitas)</option>
+              <option value="light">Ringan (olahraga 1-3x/minggu)</option>
+              <option value="moderate">Sedang (olahraga 3-5x/minggu)</option>
+              <option value="heavy">Berat (olahraga 6-7x/minggu)</option>
+              <option value="athlete">Atlet (latihan intens)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="goal">Tujuan:</label>
+            <select id="goal" name="goal" required>
+              <option value="lose">Menurunkan Berat Badan</option>
+              <option value="maintain">Menjaga Berat Badan</option>
+              <option value="gain">Menambah Massa Otot</option>
+            </select>
+          </div>
+          <button type="submit" class="form-btn">Hitung</button>
+        </form>
+        <div class="calculator-result" id="personalized-result" style="display: none;">
+          <h3>Hasil Perhitungan</h3>
+          <div id="personalized-result-text"></div>
+          <div class="chart-container">
+            <canvas id="personalized-macro-chart"></canvas>
+          </div>
+          <div id="personalized-tips"></div>
+          <div class="export-buttons">
+            <button class="export-btn" id="export-personalized-pdf">Simpan sebagai PDF</button>
+            <button class="export-btn" id="export-personalized-csv">Simpan sebagai CSV</button>
+            <button class="export-btn" id="export-personalized-txt">Simpan sebagai TXT</button>
+          </div>
+          <h4>Riwayat Perhitungan</h4>
+          <table id="personalized-history">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>TDEE (kcal)</th>
+                <th>Karbohidrat (g)</th>
+                <th>Protein (g)</th>
+                <th>Lemak (g)</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Food-Based Mode -->
+      <div class="calculator-form" id="food-based-form" style="display: none;">
+        <form id="macro-form-food-based">
+          <div class="form-group">
+            <label>Tambah Makanan:</label>
+            <div class="food-input-group">
+              <select class="food-select" name="food[]" required>
+                <option value="" disabled selected>Pilih makanan</option>
+                <option value="white_rice">Nasi Putih</option>
+                <option value="chicken_breast">Dada Ayam (tanpa kulit)</option>
+                <option value="avocado">Alpukat</option>
+                <option value="broccoli">Brokoli</option>
+                <option value="salmon">Salmon</option>
+                <option value="egg">Telur Ayam</option>
+                <option value="quinoa">Quinoa</option>
+                <option value="tempe">Tempe</option>
+                <option value="tahu">Tahu</option>
+                <option value="rendang_daging">Rendang Daging</option>
+                <option value="soto_ayam">Soto Ayam</option>
+                <option value="nasi_goreng">Nasi Goreng</option>
+                <option value="ubi_jalar">Ubi Jalar</option>
+                <option value="pisang">Pisang</option>
+              </select>
+              <input type="number" class="food-weight" name="weight[]" placeholder="Berat (gram)" min="0" step="0.1" required>
+              <button type="button" class="remove-food-btn"><i class="fas fa-trash"></i></button>
+            </div>
+            <button type="button" class="add-food-btn">Tambah Makanan</button>
+            <button type="button" class="custom-food-btn">Tambah Makanan Kustom</button>
+          </div>
+          <button type="submit" class="form-btn">Hitung</button>
+        </form>
+        <div class="calculator-result" id="food-based-result" style="display: none;">
+          <h3>Hasil Perhitungan</h3>
+          <div id="food-based-result-text"></div>
+          <div class="chart-container">
+            <canvas id="food-based-macro-chart"></canvas>
+          </div>
+          <div id="food-based-suggestions"></div>
+          <div class="export-buttons">
+            <button class="export-btn" id="export-food-based-pdf">Simpan sebagai PDF</button>
+            <button class="export-btn" id="export-food-based-csv">Simpan sebagai CSV</button>
+            <button class="export-btn" id="export-food-based-txt">Simpan sebagai TXT</button>
+          </div>
+          <h4>Riwayat Perhitungan</h4>
+          <table id="food-based-history">
+            <thead>
+              <tr>
+                <th>Makanan</th>
+                <th>Berat (g)</th>
+                <th>Karbohidrat (g)</th>
+                <th>Protein (g)</th>
+                <th>Lemak (g)</th>
+                <th>Kalori (kcal)</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Direct Macronutrient Mode -->
+      <div class="calculator-form" id="direct-macro-form" style="display: none;">
+        <form id="macro-form-direct-macro">
+          <div class="form-group">
+            <label for="carbs">Karbohidrat (gram):</label>
+            <input type="number" id="carbs" name="carbs" placeholder="Masukkan karbohidrat" min="0" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label for="protein">Protein (gram):</label>
+            <input type="number" id="protein" name="protein" placeholder="Masukkan protein" min="0" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label for="fat">Lemak (gram):</label>
+            <input type="number" id="fat" name="fat" placeholder="Masukkan lemak" min="0" step="0.1" required>
+          </div>
+          <button type="submit" class="form-btn">Hitung</button>
+        </form>
+        <div class="calculator-result" id="direct-macro-result" style="display: none;">
+          <h3>Hasil Perhitungan</h3>
+          <div id="direct-macro-result-text"></div>
+          <div class="chart-container">
+            <canvas id="direct-macro-chart"></canvas>
+          </div>
+          <div id="direct-macro-recommendations"></div>
+          <div class="export-buttons">
+            <button class="export-btn" id="export-direct-macro-pdf">Simpan sebagai PDF</button>
+            <button class="export-btn" id="export-direct-macro-csv">Simpan sebagai CSV</button>
+            <button class="export-btn" id="export-direct-macro-txt">Simpan sebagai TXT</button>
+          </div>
+          <h4>Riwayat Perhitungan</h4>
+          <table id="direct-macro-history">
+            <thead>
+              <tr>
+                <th>Karbohidrat (g)</th>
+                <th>Protein (g)</th>
+                <th>Lemak (g)</th>
+                <th>Total Kalori (kcal)</th>
+                <th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Custom Food Modal -->
+      <div class="modal" id="custom-food-modal" style="display: none;">
+        <div class="modal-content">
+          <span class="close-modal">×</span>
+          <h3>Tambah Makanan Kustom</h3>
+          <form id="custom-food-form">
+            <div class="form-group">
+              <label for="custom-food-name">Nama Makanan:</label>
+              <input type="text" id="custom-food-name" name="name" placeholder="Masukkan nama makanan" required>
+            </div>
+            <div class="form-group">
+              <label for="custom-carbs">Karbohidrat (g per 100g):</label>
+              <input type="number" id="custom-carbs" name="carbs" placeholder="Masukkan karbohidrat" min="0" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label for="custom-protein">Protein (g per 100g):</label>
+              <input type="number" id="custom-protein" name="protein" placeholder="Masukkan protein" min="0" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label for="custom-fat">Lemak (g per 100g):</label>
+              <input type="number" id="custom-fat" name="fat" placeholder="Masukkan lemak" min="0" step="0.1" required>
+            </div>
+            <button type="submit" class="form-btn">Simpan Makanan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA and Email Form -->
+  <section class="content cta-section" id="contact">
+    <h2>Hubungi Kami</h2>
+    <p class="cta-text">Punya pertanyaan tentang makronutrien? Kirim pesan kepada kami!</p>
+    <div class="contact-form">
+      <form action="mailto:support@biaramahitung.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Nama:</label>
+          <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Pesan:</label>
+          <textarea id="message" name="message" placeholder="Tulis pesan Anda" required></textarea>
+        </div>
+        <button type="submit" class="form-btn">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Biar Ama Hitung! Dibuat oleh Haikal Fatwa Rachmansyah & Fadilla Ramadhani Reysi.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="references">
+        <p><strong>Sumber Referensi:</strong> AKG Kemenkes RI (2019), WHO/FAO, USDA Nutrient Database, Harris & Benedict (1919), TKPI Kemenkes RI, American Diabetes Association.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/estimasi-makronutrien.js"></script>
+</body>
+</html>
